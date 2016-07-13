@@ -16,7 +16,7 @@ namespace Hwork_1._2
 
             for (int i = 0; i < str.Length; i++)
             {
-                //chr[i] = str[i]; 
+                chr[i] = str[i]; 
 
                 Console.WriteLine("Char: {0} dec {1:D}, hex {2:X}", chr[i], (int)chr[i], (int)chr[i]);
             }
