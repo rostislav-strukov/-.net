@@ -4,29 +4,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleAppOperator
+namespace ConsoleAppGeometria
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int x = 5, y = 12, z = 2;
+            // compute area of a circle
+            Console.Write("Enter radius mm: ");
 
-            int result = (x++ - --y + --x<<z++) * (x + y + z);
+            double _iRadius = Convert.ToDouble(Console.ReadLine());
+            double _iPi = 3.14;
+            double _iResult;
 
-            //int result = (y++ + --y );
-            //5 - 11 + 5<<2
+            _iResult = _iPi * Math.Pow(_iRadius, 2);
 
-            Console.WriteLine(result);
-            //Получаем результат равный (-76)
-            //Как это получилось по этапам: 
-            //1. Компилятор выполняет действие в одних и вторых скобках и получаем (x++ - --y + --x<<z++) * 19
-            //2. Выполняя действие во вторых скобка компилятор в приоритете инициализирует постфикс получаем (5 - --y + --x << 2)*19
-            //3. Следующее действие это операции с префиксными оператарами (5 - 11 + 5<<2), 
-            //но как я понял переменная x = 5 в выражении к примеру (х++ + --х) = 10, 
-            //т.е. постфикс инкремент + префикс инкримент для одного значения переменной получится не изменное значение переменной"
-            //4. (-1<<2)*19 = -4 * 19 = -76
+            Console.WriteLine("Area of a circle = {0}", _iResult);
+
+            // compute area of a sphere
+            _iResult = (4 * _iPi * Math.Pow(_iRadius, 3))/3;
+
+            Console.WriteLine("Area of a sphere = {0}", _iResult);
+
+            // compute area of a rectangle
+            Console.Write("Enter width of rectangle mm: ");
+
+            double _iWidth = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter height of rectangle mm: ");
+
+            double _iHeight = Convert.ToDouble(Console.ReadLine());
+
+            _iResult = _iWidth * _iHeight;
+
+            Console.WriteLine("Area of a rectangle = {0}", _iResult);
+
+            // compute area of a parallelepiped
+            Console.Write("Enter width parallelepiped mm: ");
+
+            double _Width = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter height parallelepiped mm: ");
+
+            double _Height = Convert.ToDouble(Console.ReadLine());
+
+            Console.Write("Enter length parallelepiped mm ");
+
+            double _Length = Convert.ToDouble(Console.ReadLine());
+
+            _iResult = _Width * _Height * _Length;
+
+            Console.WriteLine("Area of a parallelepiped mm = {0}", _iResult);
             Console.ReadKey();
+
+
         }
     }
 }
