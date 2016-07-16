@@ -13,48 +13,48 @@ namespace ConsoleAppGeometria
             // compute area of a circle
             Console.Write("Enter radius mm: ");
 
-            Double _Radius = Convert.ToDouble(Console.ReadLine());
-            Double _Pi = 3.14;
-            Double _Result;
+            double _iRadius = Convert.ToDouble(Console.ReadLine());
+            double _iPi = 3.14;
+            double _iResult;
 
-            _Result = _Pi * Math.Pow(_Radius, 2);
+            _iResult = _iPi * Math.Pow(_iRadius, 2);
 
-            Console.WriteLine("Area of a circle = {0}", _Result);
+            Console.WriteLine("Area of a circle = {0}", _iResult);
 
             // compute area of a sphere
-            _Result = (4 * _Pi * Math.Pow(_Radius, 3))/3;
+            _iResult = (4 * _iPi * Math.Pow(_iRadius, 3))/3;
 
-            Console.WriteLine("Area of a sphere = {0}", _Result);
+            Console.WriteLine("Area of a sphere = {0}", _iResult);
 
             // compute area of a rectangle
             Console.Write("Enter width of rectangle mm: ");
 
-            Double _Width = Convert.ToDouble(Console.ReadLine());
+            double _iWidth = Convert.ToDouble(Console.ReadLine());
 
             Console.Write("Enter height of rectangle mm: ");
 
-            Double _Height = Convert.ToDouble(Console.ReadLine());
+            double _iHeight = Convert.ToDouble(Console.ReadLine());
 
-            _Result = _Width * _Height;
+            _iResult = _iWidth * _iHeight;
 
-            Console.WriteLine("Area of a rectangle = {0}", _Result);
+            Console.WriteLine("Area of a rectangle = {0}", _iResult);
 
             // compute area of a parallelepiped
             Console.Write("Enter width parallelepiped mm: ");
 
-            Double Width = Convert.ToDouble(Console.ReadLine());
+            double _Width = Convert.ToDouble(Console.ReadLine());
 
             Console.Write("Enter height parallelepiped mm: ");
 
-            Double Height = Convert.ToDouble(Console.ReadLine());
+            double _Height = Convert.ToDouble(Console.ReadLine());
 
             Console.Write("Enter length parallelepiped mm ");
 
-            Double Length = Convert.ToDouble(Console.ReadLine());
+            double _Length = Convert.ToDouble(Console.ReadLine());
 
-            _Result = _Width * _Height * Length;
+            _iResult = _Width * _Height * _Length;
 
-            Console.WriteLine("Area of a parallelepiped mm = {0}", _Result);
+            Console.WriteLine("Area of a parallelepiped mm = {0}", _iResult);
             Console.ReadKey();
 
 
