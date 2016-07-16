@@ -96,6 +96,7 @@ namespace ConsoleAppLogicandOperators
             _iTask = _iEmpty ^ _iValue;
 
             Console.WriteLine("_iValue ^ (out - or) _iEmty = {0}", _iTask);
+            Console.WriteLine("Здесь" + ' ' + "пример" + ',' + "простой" + '-' + "конкатенации" + '|' + "строк" );
             Console.ReadKey();
         }
     }
