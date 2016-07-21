@@ -8,84 +8,95 @@ namespace ConsoleAppCalc
 {
     class Program
     {
-        enum Operation { Plus = '+', Minus = '-', Div = '/', Mult = '*', wrongOperation = 0 };
+        // создаём операцию перечесления для удобства перебора методов
+        enum Operation { wrongOperation, Multiply = '*', Division = '/', Sum = '+', Substraction = '-' };
+
         static void Main(string[] args)
         {
-                double _iBuffer = 0;
-                double _iOperand = 0;
-                Operation curentOperation;
-                Console.WriteLine("Please enter number:");
+            double _preOperand = 0;
+            double _postOperand = 0;
 
-                while (!CheckFigures(Console.ReadLine(), out _iBuffer))
-                    Console.WriteLine("Is wrong please enter the number");
+            Operation _signOperation;
 
-                while (true)
+            Console.WriteLine("Please enter the number: ");
+
+            while (!CheckOperation(Console.ReadLine(), out _preOperand))
+            {
+                Console.WriteLine("Wrong symbol, please enter the number");
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Please enter operation would will you do (+ - / *)");
+                _signOperation = GetSign(Console.ReadLine()[0]);
+
+                if (CheckOperation(Console.ReadLine(), out _preOperand))
                 {
-                    curentOperation = GetOperation(Console.ReadLine()[0]);
-
-                    if (CheckFigures(Console.ReadLine(), out _iOperand))
+                    switch (_signOperation)
                     {
-                        switch (curentOperation)
-                        {
-                            case Operation.Div:
-                                _iBuffer /= _iOperand;
-                                break;
-                            case Operation.Mult:
-                                _iBuffer *= _iOperand;
-                                break;
-                            case Operation.Plus:
-                                _iBuffer += _iOperand;
-                                break;
-                            case Operation.Minus:
-                                _iBuffer -= _iOperand;
-                                break;
-                            case Operation.wrongOperation:
-                                return;
-                        }
-                        Console.WriteLine("rezult: {0}", _iBuffer);
+                        case Operation.Division:
+                            _preOperand /= _postOperand;
+                            break;
+                        case Operation.Multiply:
+                            _preOperand *= _postOperand;
+                            break;
+                        case Operation.Substraction:
+                            _preOperand -= _postOperand;
+                            break;
+                        case Operation.Sum:
+                            _preOperand += _postOperand;
+                            break;
+                        default:
+                            Console.WriteLine("Wrong Operation");
+                            return;
                     }
-                    else
-                        Console.WriteLine("Please enter number in's not right");
+                    Console.WriteLine("You are great, result is {0}", _preOperand);
+                }
+                else
+                {
+                    Console.WriteLine("Is wrong please enter the number");
                 }
             }
-            static Double Plus(Double arr1, Double arr2)
+        }
+        private static bool CheckOperation(string _iSign, out double _iResult)
+        {
+            _iResult = 0;
+            return double.TryParse(_iSign, out _iResult);
+        }
+        private double Multiply(double _val1, double _val2)
+        {
+            return _val1 * _val2;
+        }
+        private double Division(double _val1, double _val2)
+        {
+            return _val1 / _val2;
+        }
+        private double Sum(double _val1, double _val2)
+        {
+            return _val1 + _val2;
+        }
+        private double Substraction(double _val1, double _val2)
+        {
+            return _val1 - _val2;
+        }
+
+        private static Operation GetSign(char _iSign)
+        {
+            if (_iSign == '/')
             {
-            return arr1 + arr2;
-        }
-        static Double Minus(Double arr1, Double arr2)
-        {
-            return arr1 - arr2;
-        }
-        static Double Div(Double arr1, Double arr2)
-        {
-            return arr1 / arr2;
-        }
-        static Double Mult(Double arr1, Double arr2)
-        {
-            return arr1 * arr2;
-        }
-        private static bool CheckFigures(string str, out double rez)
-        {
-            rez = 0;
-            return double.TryParse(str, out rez);
-        }
-        private static Operation GetOperation(char ch)
-        {
-            if (ch == '/')
-            {
-                return Operation.Div;
+                return Operation.Division;
             }
-            if (ch == '*')
+            if (_iSign == '*')
             {
-                return Operation.Mult;
+                return Operation.Multiply;
             }
-            if (ch == '+')
+            if (_iSign == '+')
             {
-                return Operation.Plus;
+                return Operation.Sum;
             }
-            if (ch == '-')
+            if (_iSign == '-')
             {
-                return Operation.Minus;
+                return Operation.Substraction;
             }
             return Operation.wrongOperation;
         }
