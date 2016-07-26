@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,78 +10,48 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            // ининциализируем переменные
-            string _iName;
+            Console.WriteLine("Hello I'm console calculate if you need calculate operation please enter number do you need \n1. Multiply (*) \n2. Division (/) \n3. Sum (+) \n4. Subtraction (-) \n5. Remineder of division (%) \n6. Powering");
+            string _iVal = Console.ReadLine();
 
-            Console.WriteLine("Hello, please enter you name");
-
-            _iName = Console.ReadLine();
-
-            Console.WriteLine(_iName + ' ' + "please choose do you wont to by");
-            
-
-            Product Tablet = new Product();
-
-            Tablet.Id = 1;
-            Tablet.GetName = "Tablet";
-            Tablet.Prise = 100.25m;
-
-            Product Tv = new Product();
-
-            Tv.Id = 2;
-            Tv.GetName = "TV";
-            Tv.Prise = 150.85m;
-
-            Product Phone = new Product();
-
-            Phone.Id = 3;
-            Phone.GetName = "Phone";
-            Phone.Prise = 120.65m;
-
-            Product Mouse = new Product();
-
-            Mouse.Id = 4;
-            Mouse.GetName = "Mouse";
-            Mouse.Prise = 25.78m;
-
-            Product DeskTop = new Product();
-
-            DeskTop.Id = 5;
-            DeskTop.GetName = "DeskTop";
-            DeskTop.Prise = 250.89m;
-
-            Console.WriteLine("--------------- Products ---------------");
-            Console.WriteLine("{0}.{1}{2}", Tablet.Id, Tablet.GetName, Tablet.Prise);
-            Console.WriteLine("{0}.{1}{2}", Phone.Id, Phone.GetName, Phone.Prise);
-            Console.WriteLine("{0}.{1}{2}", Mouse.Id, Mouse.GetName, Mouse.Prise);
-            Console.WriteLine("{0}.{1}{2}", Tv.Id, Tv.GetName, Tv.Prise);
-            Console.WriteLine("{0}.{1}{2}", DeskTop.Id, DeskTop.GetName, DeskTop.Prise);
+            switch (_iVal)
+            {
+                case "1":
+                    Console.WriteLine("Please enter first multiplier");
+                    double _iMultiplierFirst = Convert.ToDouble(Console.ReadLine());
+                    Console.WriteLine("Please enter second multiplier");
+                    double _iMultiplierSecond = Convert.ToDouble(Console.ReadLine());
+                    Multiply(_iMultiplierFirst, _iMultiplierSecond);
+                    Console.WriteLine("Result of Product: " + ' ' + Multiply(_iMultiplierFirst, _iMultiplierSecond));
+                    break;
+                //case 2:
+                //case 3:
+                //case 4:
+                //case 5:
+                //case 6:
+                default:
+                    break;
+            }
             Console.ReadKey();
-        }  
-    }
-
-    class Product
-    {
-        private uint id;
-        private string name;
-        private decimal price;
-
-        public uint Id
+        }
+        static double Multiply(double _iMultiplierFirst, double _iMultiplierSecond)
         {
-            get { return id; }
-            set { id = value; }
+            double _iMultiply = _iMultiplierFirst * _iMultiplierSecond;
+            return _iMultiply;
         }
 
-        public string GetName
+        static string Control(string _iVal)
         {
-            get { return name; }
-            set { name = value; }
-        }
-
-        public decimal Prise
-        {
-            get { return price; }
-            set { price = value; }
+            foreach (char i in _iVal)
+            {
+                if (!Char.IsDigit(_iVal[i]))
+                {
+                    continue;
+                } else
+                {
+                    Console.WriteLine("Please");
+                }
+            }
+            
         }
     }
 }
