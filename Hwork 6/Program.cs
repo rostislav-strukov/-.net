@@ -8,7 +8,7 @@ namespace AppScaut
 {
     class Program
     {
-        private static List<Scout> OurScouts;
+        private static List<Scout> Scouts;
         static void Main(string[] args)
         {
             Console.WriteLine("-------------------------------------------------------------------------------Please choose you enter-----------------------------------------------------------------");
@@ -49,43 +49,52 @@ namespace AppScaut
 
         private static void CreateScout()
         {
-            Scout scout;
+            Scout _iScout;
 
             Console.WriteLine("Please enter sex of scout print in line Male - m or Female - f: ");
 
-            char _mySex = Console.ReadLine()[0];
+            char _iSex = Console.ReadLine()[0];
 
-            switch (_mySex)
+            switch (_iSex)
             {
                 case 'm':
                     Console.WriteLine("Enter name for scout: ");
-                    scout = new BoyScout(Console.ReadLine());
+                    _iScout = new BoyScout(Console.ReadLine());
                     break;
                 case 'f':
                     Console.WriteLine("Enter name for scout: ");
-                    scout = new GirlScout(Console.ReadLine());
+                    _iScout = new GirlScout(Console.ReadLine());
                     break;
                 default:
                     Console.WriteLine("Wrong enter");
-                    break;
+                    return;
             }
+            Scouts.Add(_iScout);
+            Console.WriteLine($"Scout { _iScout.Name} added");
         }
+
+        private static void AddSport()
+        {
+
+        }
+
+
     }
 
     class Scout
     {
         private string _iName;
-        private string _iSex;
-        
-        public string Name { get { return _iName; }  set { _iName = value; } }
-        public string Sex { get { return _iSex; } set { _iSex = value; } }
-    }
+        protected Sex _mySex;
 
+        public string Name { get { return _iName; } set { _iName = value; } }
+
+        public Sex MySex { get { return _mySex; } }
+    }
     class BoyScout : Scout
     {
         public BoyScout(string _iName) : base(_iName)
         {
-   
+            _mySex = Sex._iMale; ;
         }
     }
 
@@ -93,7 +102,7 @@ namespace AppScaut
     {
         public GirlScout(string _iName) : base(_iName)
         {
-
+             _mySex = Sex._iFemale;
         }
     }
 
@@ -110,5 +119,11 @@ namespace AppScaut
     class SportBoy
     {
 
+    }
+
+    enum Sex
+    {
+        _iMale = 'm',
+        _iFemale = 'f'
     }
 }
