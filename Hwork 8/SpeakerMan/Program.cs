@@ -10,7 +10,7 @@ namespace SpeakerMan
     {
         static void Main(string[] args)
         {
-            string _checkLanguage = null;
+            Languages _checkLanguage;
 
             Console.WriteLine("Пообщайся со мной!");
             Console.WriteLine();
@@ -22,11 +22,11 @@ namespace SpeakerMan
             Console.WriteLine("If you want speak english please enter letter e:          |");
             Console.WriteLine(new String('-', 60));
 
-            _checkLanguage = Console.ReadLine();
+            _checkLanguage = GetLanguages(Console.ReadLine()[0]);
 
             switch (_checkLanguage)
             {
-                case "p":
+                case Languages._Ru:
                     SpeakerRU russian = new SpeakerRU();
                     russian.Name = "Бот";
                     Console.WriteLine(new String('-', 15));
@@ -34,7 +34,7 @@ namespace SpeakerMan
                     Console.WriteLine(new String('-', 15));
                     russian.GetAnswer();
                     break;
-                case "у":
+                case Languages._Ukr:
                     SpeakerUKR ukrain = new SpeakerUKR();
                     ukrain.Name = "Бот";
                     Console.WriteLine(new String('-', 15));
@@ -42,7 +42,7 @@ namespace SpeakerMan
                     Console.WriteLine(new String('-', 15));
                     ukrain.GetAnswer();
                     break;
-                case "e":
+                case Languages._En:
                     SpeakerENG english = new SpeakerENG();
                     english.Name = "Bot";
                     Console.WriteLine(new String('-', 15));
@@ -52,7 +52,33 @@ namespace SpeakerMan
                     break;
             }
             Console.ReadKey();
-
         }
+
+        private static Languages GetLanguages(char _Ch)
+        {
+            if (_Ch == 'p')
+            {
+                return Languages._Ru;
+            }
+            if (_Ch == 'y')
+            {
+                return Languages._Ukr;
+            }
+            if (_Ch == 'e')
+            {
+                return Languages._En;
+            }
+            return Languages._doesntChek;
+        }
+
+        
+    }
+
+    enum Languages
+    {
+        _En = 'e',
+        _Ru = 'p',
+        _Ukr = 'y',
+        _doesntChek = 0
     }
 }
