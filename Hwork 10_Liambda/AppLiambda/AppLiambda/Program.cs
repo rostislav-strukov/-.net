@@ -49,12 +49,12 @@ namespace AppLiambda
                     switch (_chek)
                     {
                         case "1":
-                            myDelegate = () => { File.WriteAllText(@"D:\-.net\Hwork 10_Liambda\file\Dictionary.txt", _enterValue); };
+                            myDelegate = delegate { File.WriteAllText(@"D:\-.net\Hwork 10_Liambda\file\Dictionary.txt", _enterValue); };
                             myDelegate();
                             Console.WriteLine("Text wrote in file");
                             break;
                         case "2":
-                            myDelegate = () => { Console.WriteLine($"You are write ({_enterValue})"); };
+                            myDelegate = delegate { Console.WriteLine($"You are write ({_enterValue})"); };
                             myDelegate();
                             break;
                         default:
@@ -70,12 +70,12 @@ namespace AppLiambda
                     switch (_chek)
                     {
                         case "1":
-                            myDelegate = () => { File.WriteAllText(@"D:\-.net\Hwork 10_Liambda\file\Dictionary.txt", Convert.ToString(_numberPow)); };
+                            myDelegate = delegate { File.WriteAllText(@"D:\-.net\Hwork 10_Liambda\file\Dictionary.txt", Convert.ToString(_numberPow)); };
                             myDelegate();
                             Console.WriteLine("Text wrote in file");
                             break;
                         case "2":
-                            myDelegate = () => { Console.WriteLine($"You are write number ({ _numberPow})"); };
+                            myDelegate = delegate { Console.WriteLine($"You are write number ({ _numberPow})"); };
                             myDelegate();
                             break;
                         default:
