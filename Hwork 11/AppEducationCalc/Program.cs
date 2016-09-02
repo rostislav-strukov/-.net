@@ -12,7 +12,7 @@ namespace AppEducationCalc
         static void Main(string[] args)
         {
             int check = 0;
-
+            double miidlleRate = 0;
             UserCollection student = new UserCollection();
             List<UserCollection> students = new List<UserCollection>();
 
@@ -42,8 +42,10 @@ namespace AppEducationCalc
                         {
                             for (int i = 0; i < bal.Length; i++)
                             {
+                                miidlleRate += bal[i];
                                 Console.WriteLine(bal[i]);
                             }
+                            Console.WriteLine($"Средняя оценка {miidlleRate = miidlleRate / bal.Length}");
                         }
                     }
                     Console.WriteLine("------------------------------------");
@@ -52,15 +54,5 @@ namespace AppEducationCalc
 
             Console.ReadKey();          
         }
-
-    //    Double _doubleMedium = default(Double);
-    //        foreach (var item in GetRatings())
-    //        {
-    //            for (int i = 0; i<item.Length; i++)
-    //            {
-    //                _doubleMedium += item[i];
-    //            }
-    //doubleMedium = doubleMedium / item.Length;
-    //        }
     }
 }
