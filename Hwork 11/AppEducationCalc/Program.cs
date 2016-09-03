@@ -13,7 +13,9 @@ namespace AppEducationCalc
         {
             int check = 0;
             double miidlleRate = 0;
+
             UserCollection student = new UserCollection();
+
             List<UserCollection> students = new List<UserCollection>();
 
             do
@@ -33,11 +35,12 @@ namespace AppEducationCalc
                 
                 foreach (UserCollection item in students)
                 {
-                    Console.WriteLine("------------------------------------");
-                    Console.WriteLine(item.Name + " " + item.Age);
+                    Console.WriteLine("---- СПИСОК СТУДЕНТОВ ----");
+                    Console.WriteLine(new string('-', 20));
+                    Console.WriteLine($"Имя студента: { item.Name + " Возраст студента:" + item.Age }");
                     foreach (KeyValuePair<string, uint> value in dic)
                     {
-                        Console.WriteLine(value.Key + " " + value.Value);
+                        Console.WriteLine($"Предмет: { value.Key + "Оценка за предмет:" + value.Value }");
                         foreach (var bal in item.Power())
                         {
                             for (int i = 0; i < bal.Length; i++)
@@ -45,10 +48,10 @@ namespace AppEducationCalc
                                 miidlleRate += bal[i];
                                 Console.WriteLine(bal[i]);
                             }
-                            Console.WriteLine($"Средняя оценка {miidlleRate = miidlleRate / bal.Length}");
+                            Console.WriteLine($"Средняя оценка по всем придметам ученика: {miidlleRate = miidlleRate / bal.Length}");
                         }
                     }
-                    Console.WriteLine("------------------------------------");
+                    Console.WriteLine(new string('-', 20));
                 }
             } while (check == 1);
 

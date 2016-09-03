@@ -45,7 +45,7 @@ namespace AppEducationCalc
                 
                 foreach (var item in dic)
                 {
-                    Console.WriteLine(item);
+                    Console.WriteLine($"Предмет:{item.Key + "Оценка по предмету:" + item.Value}");
                 }
             } while (check == 1);
 
