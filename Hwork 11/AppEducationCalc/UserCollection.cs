@@ -17,7 +17,7 @@ namespace AppEducationCalc
 
         public UserCollection(string name, uint age, Dictionary<string, uint> dic)
         {
-            this.dic = dic;
+            dic = dic;
             Name = name;
             Age = age;
         }
