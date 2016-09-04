@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppEducationCalc
 {
+    [Serializable]
     class SubjectTotal
     {
         public string Subject { get; set; }

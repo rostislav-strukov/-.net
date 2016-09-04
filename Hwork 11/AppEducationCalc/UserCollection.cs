@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppEducationCalc
 {
+    [Serializable]
     class UserCollection : SubjectTotal
     {
         private Dictionary<string, uint> dic;
@@ -45,7 +46,7 @@ namespace AppEducationCalc
                 
                 foreach (var item in dic)
                 {
-                    Console.WriteLine($"Предмет:{item.Key + "Оценка по предмету:" + item.Value}");
+                    Console.WriteLine($"Предмет:{item.Key + " " + "Оценка по предмету:" + item.Value}");
                 }
             } while (check == 1);
 

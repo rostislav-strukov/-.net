@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AppEducationCalc
 {
+    [Serializable]
     class Program
     {
         static void Main(string[] args)
@@ -17,6 +20,19 @@ namespace AppEducationCalc
             UserCollection student = new UserCollection();
 
             List<UserCollection> students = new List<UserCollection>();
+
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            using (FileStream fs = new FileStream("people.dat", FileMode.OpenOrCreate))
+            {
+                List<UserCollection> newPerson = (List<UserCollection>)formatter.Deserialize(fs);
+
+                Console.WriteLine("У Вас уже есть записанные студенты:");
+                foreach (var item in newPerson)
+                {
+                    Console.WriteLine($"Имя студента: { item.Name + " Возраст студента:" + item.Age }");
+                }
+            }
 
             do
             {
@@ -55,6 +71,13 @@ namespace AppEducationCalc
                 }
             } while (check == 1);
 
+            using (FileStream fs = new FileStream("people.dat", FileMode.OpenOrCreate))
+            {
+
+                formatter.Serialize(fs, students);
+
+                Console.WriteLine("Объект сериализован");
+            }
             Console.ReadKey();          
         }
     }
