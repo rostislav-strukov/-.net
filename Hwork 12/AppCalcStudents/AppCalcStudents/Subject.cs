@@ -12,6 +12,6 @@ namespace AppCalcStudents
         private uint _rate;
 
         public string SubjectNew { get { return _subjectNew; } set { _subjectNew = value; } }
-        public uint Age { get { return _rate; } set { _rate = value; } }
+        public uint Rate { get { return _rate; } set { _rate = value; } }
     }
 }

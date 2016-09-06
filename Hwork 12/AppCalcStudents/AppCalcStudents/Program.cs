@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppCalcStudents.Modules;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +11,11 @@ namespace AppCalcStudents
     {
         static void Main(string[] args)
         {
+            StudentsDiary students = new StudentsDiary();
 
-        
+            students.CreateStudents();
             Console.ReadKey();
+
         }
     }
 }

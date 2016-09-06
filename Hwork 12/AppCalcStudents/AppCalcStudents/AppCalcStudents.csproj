@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Modules\ConcreateEnumerable.cs" />
+    <Compile Include="SubjectDiary.cs" />
     <Compile Include="Modules\ConcreateEnumerator.cs" />
     <Compile Include="Modules\IEnumerable.cs" />
     <Compile Include="Modules\IEnumerator.cs" />

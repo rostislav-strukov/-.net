@@ -8,17 +8,18 @@ namespace AppCalcStudents.Modules
 {
     class ConcreateEnumerator : IEnumerator
     {
-        private ConcreateEnumerable enumerable;
+        private StudentsDiary students;
+
         private int current = -1;
 
-        public ConcreateEnumerator(ConcreateEnumerable enumerable)
+        public ConcreateEnumerator(StudentsDiary students)
         {
-            this.enumerable = enumerable;
+            this.students = students;
         }
 
         public bool MoveNext()
         {
-            if (current < enumerable.Count - 1)
+            if (current < students.Count - 1)
             {
                 current++;
                 return true;
@@ -31,7 +32,7 @@ namespace AppCalcStudents.Modules
         }
         public object Current
         {
-            get { return enumerable[current];}
+            get { return students[current];}
         }
     }
 }
