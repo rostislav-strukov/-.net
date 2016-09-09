@@ -8,13 +8,14 @@ using AppCalcStudents;
 
 namespace AppCalcStudents
 {
-    [Serializable]
-    class StudentsDiary : IEnumerable
+    public class StudentsDiary : Student, IEnumerable
     {
-        int _check = 0;
+        private int _check = 0;
 
-        Student student = new Student();
-        SubjectDiary subjects = new SubjectDiary();
+        public int Check { get { return _check;  } set { _check = value; } }
+
+        public Student student = new Student();
+        public SubjectDiary subjects = new SubjectDiary();
 
         public List<Student> students = new List<Student>();
 
@@ -35,12 +36,12 @@ namespace AppCalcStudents
                 subjects.AddSubject(_subject, _rate);
                 subjects.ShowSubject();
                 Console.WriteLine("Если вы хотите добавить ещё один предмет нажмите цифру 1 если нет нажмите цифру 2:");
-                _check = Convert.ToInt32(Console.ReadLine());
-            } while (_check == 1);
+                Check = Convert.ToInt32(Console.ReadLine());
+            } while (Check == 1);
 
-            students.Add(new Student(student.Name, student.Age, subjects));
+            students.Add(new Student(student.Name, student.Age, subjects.SubjectNew, subjects.Rate));
         }
-        
+
         public void ShowStudents()
         {
             Console.WriteLine("---- СПИСОК СТУДЕНТОВ ----");
@@ -48,8 +49,12 @@ namespace AppCalcStudents
             foreach (var item in students)
             {
                 Console.WriteLine($"Имя студента: {item.Name} | Возраст студента {item.Age}");
+                subjects.ShowSubject();
             }
         }
+        
+
+
         public Student this[int index]
         {
             get { return students[index]; }

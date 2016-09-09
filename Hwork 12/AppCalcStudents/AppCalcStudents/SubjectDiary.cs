@@ -6,14 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using AppCalcStudents.Modules;
 using AppCalcStudents;
+using System.Xml.Serialization;
 
 namespace AppCalcStudents.Modules
 {
-    [Serializable]
-    class SubjectDiary : Subject
+    public class SubjectDiary : Student
     {
-        
-        Dictionary<String, UInt32> subjects = new Dictionary<String, UInt32>();
+        double _midlleRate = 0;
+
+        [XmlIgnore]
+        public Dictionary<String, UInt32> subjects = new Dictionary<String, UInt32>();
 
         public void AddSubject(string _subject, uint _rate)
         {
@@ -32,11 +34,21 @@ namespace AppCalcStudents.Modules
             
         }
 
-        public void ShowSubject()
+        public virtual void ShowSubject()
         {
+            Console.WriteLine("---- список придметов ----");
+
             foreach (var item in subjects)
             {
                 Console.WriteLine($"Предмет: {item.Key} Оценка: {item.Value}");
+                foreach (var bal in GetMidleRate())
+                {
+                    for (int i = 0; i < bal.Length; i++)
+                    {
+                        _midlleRate += bal[i];
+                    }
+                    Console.WriteLine($"Средняя оценка по всем придметам ученика: {_midlleRate = _midlleRate / bal.Length}");
+                }
             }
         }
 

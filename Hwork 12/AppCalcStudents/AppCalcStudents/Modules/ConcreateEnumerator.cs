@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AppCalcStudents.Modules
 {
-    class ConcreateEnumerator : IEnumerator
+    public class ConcreateEnumerator : IEnumerator
     {
-        private StudentsDiary students;
+        public StudentsDiary students;
 
         private int current = -1;
 

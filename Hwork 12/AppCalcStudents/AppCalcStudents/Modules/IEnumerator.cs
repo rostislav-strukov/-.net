@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppCalcStudents.Modules
 {
-    interface IEnumerator
+    public interface IEnumerator
     {
         bool MoveNext();
         void Reset();

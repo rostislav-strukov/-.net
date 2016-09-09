@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AppCalcStudents.Modules
 {
-    interface IEnumerable
+    public interface IEnumerable
     {
         IEnumerator GetEnumerator();
     }

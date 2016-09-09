@@ -1,21 +1,39 @@
 ﻿using AppCalcStudents.Modules;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace AppCalcStudents
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             StudentsDiary students = new StudentsDiary();
+            do
+            {
+                students.CreateStudents();
 
-            students.CreateStudents();
-            Console.ReadKey();
+                Console.WriteLine("Если вы хотите добавить ещё одинго студента нажмите цифру 1 если нет нажмите цифру 2:");
 
+
+                FileStream stream = new FileStream("Students.xml", FileMode.Create, FileAccess.Write, FileShare.Read);
+
+                XmlSerializer serializer = new XmlSerializer(typeof(StudentsDiary));
+
+                serializer.Serialize(stream, students);
+
+                stream.Close();
+
+                Console.WriteLine("Обьект сереализован");
+
+                Console.ReadKey();
+
+            } while (students.Check == 1);
         }
     }
 }
