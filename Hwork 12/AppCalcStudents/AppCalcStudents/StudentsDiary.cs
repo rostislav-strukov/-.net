@@ -5,9 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using AppCalcStudents.Modules;
 using AppCalcStudents;
+using System.Xml.Serialization;
 
 namespace AppCalcStudents
 {
+    [Serializable]
+    [XmlRoot("StudentsRepository")]
     public class StudentsDiary : Student, IEnumerable
     {
         private int _check = 0;
@@ -16,7 +19,8 @@ namespace AppCalcStudents
 
         public Student student = new Student();
         public SubjectDiary subjects = new SubjectDiary();
-
+        
+        [XmlArray("Students"), XmlArrayItem(typeof(Student), ElementName = "Student")]
         public List<Student> students = new List<Student>();
 
         public void CreateStudents()

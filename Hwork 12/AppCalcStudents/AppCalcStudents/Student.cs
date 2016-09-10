@@ -8,6 +8,8 @@ using System.Xml.Serialization;
 
 namespace AppCalcStudents
 {
+    [Serializable]
+    [XmlRoot("Student")]
     public class Student
     {
         private string _name;
@@ -23,8 +25,8 @@ namespace AppCalcStudents
         public string SubjectNew { get { return _subjectNew; } set { _subjectNew = value; } }
         [XmlAttribute("SerialVALUE")]
         public uint Rate { get { return _rate; } set { _rate = value; } }
-        [XmlArray("Students"), XmlArrayItem(typeof(StudentsDiary), ElementName = "Student")]
-        public StudentsDiary students { get; set; }
+        
+        //public StudentsDiary students { get; set; }
 
 
         public Student(string _nameArg, uint _ageArg, string _subjectNewArg, uint _rateArg)

@@ -82,11 +82,11 @@ namespace Hwork_13
 
                     };
 
-            //foreach (var item in query)
-            //{
-            //    Console.WriteLine($"Товар номер: => {item._id} Сумма к оплате: =>{item._sum}");
-            //    Console.WriteLine();
-            //}
+            foreach (var item in query)
+            {
+                Console.WriteLine($"Товар номер: => {item._id} Сумма к оплате: =>{item._sum}");
+                Console.WriteLine();
+            }
 
             foreach (var _article in query.Skip(1 * _sizePage).Take(_sizePage))
             {
@@ -97,6 +97,7 @@ namespace Hwork_13
             Console.WriteLine("Введите слово");
 
             string keywords = Console.ReadLine();
+
             var queryTag =
                 from keyTag in repository
                 where Equals(keywords, keyTag.Name) //keywords.Any(tag => keyTag.Name.Contains(tag))

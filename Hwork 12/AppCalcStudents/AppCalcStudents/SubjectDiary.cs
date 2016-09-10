@@ -10,11 +10,15 @@ using System.Xml.Serialization;
 
 namespace AppCalcStudents.Modules
 {
+    [Serializable]
+    [XmlRoot("SubjectRepository")]
     public class SubjectDiary : Student
     {
         double _midlleRate = 0;
 
+
         [XmlIgnore]
+        //[XmlArray("Subjects"), XmlArrayItem(typeof(SubjectDiary), ElementName = "Subject")]
         public Dictionary<String, UInt32> subjects = new Dictionary<String, UInt32>();
 
         public void AddSubject(string _subject, uint _rate)
