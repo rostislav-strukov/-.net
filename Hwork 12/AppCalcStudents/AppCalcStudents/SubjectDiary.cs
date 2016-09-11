@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AppCalcStudents.Modules;
 using AppCalcStudents;
 using System.Xml.Serialization;
+using System.IO;
 
 namespace AppCalcStudents.Modules
 {
@@ -16,10 +17,12 @@ namespace AppCalcStudents.Modules
     {
         double _midlleRate = 0;
 
+        Student student = new Student();
 
         [XmlIgnore]
-        //[XmlArray("Subjects"), XmlArrayItem(typeof(SubjectDiary), ElementName = "Subject")]
+        //[XmlArray("Subjects"), XmlArrayItem(typeof(Student[]), ElementName = "Subject")]
         public Dictionary<String, UInt32> subjects = new Dictionary<String, UInt32>();
+        private TextWriter stream;
 
         public void AddSubject(string _subject, uint _rate)
         {
@@ -59,6 +62,14 @@ namespace AppCalcStudents.Modules
         public IEnumerable<UInt32[]> GetMidleRate()
         {
             yield return subjects.Values.ToArray();
+        }
+
+        public void SerealizationDictuonary()
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Student[]), new XmlRootAttribute() { ElementName = "Students" });
+
+            serializer.Serialize(stream,
+              subjects.Select(kv => new Student() { SubjectNew = kv.Key, Rate = kv.Value }).ToArray());
         }
     }
 }

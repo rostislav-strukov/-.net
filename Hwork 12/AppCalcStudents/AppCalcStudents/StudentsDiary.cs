@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AppCalcStudents.Modules;
 using AppCalcStudents;
 using System.Xml.Serialization;
+using System.IO;
 
 namespace AppCalcStudents
 {
@@ -22,6 +23,7 @@ namespace AppCalcStudents
         
         [XmlArray("Students"), XmlArrayItem(typeof(Student), ElementName = "Student")]
         public List<Student> students = new List<Student>();
+        private TextWriter stream;
 
         public void CreateStudents()
         {
@@ -43,7 +45,7 @@ namespace AppCalcStudents
                 Check = Convert.ToInt32(Console.ReadLine());
             } while (Check == 1);
 
-            students.Add(new Student(student.Name, student.Age, subjects.SubjectNew, subjects.Rate));
+            students.Add(new Student(student.Name, student.Age, student.SubjectNew, student.Rate));
         }
 
         public void ShowStudents()
@@ -56,7 +58,8 @@ namespace AppCalcStudents
                 subjects.ShowSubject();
             }
         }
-        
+
+
 
 
         public Student this[int index]
@@ -73,6 +76,6 @@ namespace AppCalcStudents
         public IEnumerator GetEnumerator()
         {
             return new ConcreateEnumerator(this);
-        }    
+        }
     }
 }

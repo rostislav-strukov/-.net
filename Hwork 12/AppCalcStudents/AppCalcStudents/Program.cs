@@ -13,14 +13,18 @@ namespace AppCalcStudents
     {
         static void Main(string[] args)
         {
+
+            SubjectDiary subjects = new SubjectDiary();
             Student student = new Student();
             StudentsDiary students = new StudentsDiary();
             do
             {
                 students.CreateStudents();
-
+                
                 Console.WriteLine("Если вы хотите добавить ещё одинго студента нажмите цифру 1 если нет нажмите цифру 2:");
                 students.Check = Convert.ToInt32(Console.ReadLine());
+
+
 
                 FileStream stream = new FileStream("Students.xml", FileMode.Create, FileAccess.Write, FileShare.Read);
 
@@ -31,6 +35,8 @@ namespace AppCalcStudents
                 stream.Close();
 
                 Console.WriteLine("Обьект сереализован");
+
+                subjects.SerealizationDictuonary();
 
                 Console.ReadKey();
 
