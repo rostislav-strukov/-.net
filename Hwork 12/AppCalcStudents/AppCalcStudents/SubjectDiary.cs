@@ -22,7 +22,7 @@ namespace AppCalcStudents.Modules
         [XmlIgnore]
         //[XmlArray("Subjects"), XmlArrayItem(typeof(Student[]), ElementName = "Subject")]
         public Dictionary<String, UInt32> subjects = new Dictionary<String, UInt32>();
-        private TextWriter stream;
+        
 
         public void AddSubject(string _subject, uint _rate)
         {
@@ -37,8 +37,7 @@ namespace AppCalcStudents.Modules
             {
 
                 Console.WriteLine($"Елемент {SubjectNew} уже добавлен");
-            }
-            
+            }          
         }
 
         public virtual void ShowSubject()
@@ -66,10 +65,13 @@ namespace AppCalcStudents.Modules
 
         public void SerealizationDictuonary()
         {
+
+            FileStream stream = new FileStream("Students.xml", FileMode.Create, FileAccess.Write, FileShare.Read);
             XmlSerializer serializer = new XmlSerializer(typeof(Student[]), new XmlRootAttribute() { ElementName = "Students" });
 
             serializer.Serialize(stream,
-              subjects.Select(kv => new Student() { SubjectNew = kv.Key, Rate = kv.Value }).ToArray());
+              subjects.Select(student => new Student() { SubjectNew = student.Key, Rate = student.Value }).ToArray());
+            Console.WriteLine("Dictionary сереализован");
         }
     }
 }
