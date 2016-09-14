@@ -67,10 +67,11 @@ namespace AppCalcStudents.Modules
         {
 
             FileStream stream = new FileStream("Students.xml", FileMode.Create, FileAccess.Write, FileShare.Read);
+
             XmlSerializer serializer = new XmlSerializer(typeof(Student[]), new XmlRootAttribute() { ElementName = "Students" });
 
-            serializer.Serialize(stream,
-              subjects.Select(student => new Student() { SubjectNew = student.Key, Rate = student.Value }).ToArray());
+            serializer.Serialize(stream, subjects.Select(student => new Student() { SubjectNew = student.Key, Rate = student.Value }).ToArray());
+
             Console.WriteLine("Dictionary сереализован");
         }
     }

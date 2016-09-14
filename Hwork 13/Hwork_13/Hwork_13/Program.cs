@@ -22,7 +22,7 @@ namespace Hwork_13
                 new Article
                 {
                     Id = 1,
-                    Name = "новый Телефон",
+                    Name = "new Phone",
                     Price = 300m,
                     ValueCount = 10,
                     Discount = 0.9m,
@@ -73,7 +73,7 @@ namespace Hwork_13
 
             var query =
                     from _article in repository
-                    where _article.Discount < 1m && _article.Price < 1000 && _article.Sold > 2
+                    where _article.Discount < 1m && _article.Price < 1000 && _article.Sold > 2 && _article.Name.Contains("new")
                     orderby _article.Name
                     select new
                     {
