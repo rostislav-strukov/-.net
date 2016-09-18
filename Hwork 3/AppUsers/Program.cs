@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleAppUsersLogin
+namespace AppUsers
 {
     class Program
     {
         static void Main(string[] args)
         {
             // data about users
-            string[] _iAdmin = {"admin", "passwordadmin"};
-            string[] _iModerator = { "moderator", "passwordmoderator" };
-            string[] _iUser = { "user", "passworduser" };
+            string[] _admin = { "admin", "passwordadmin" };
+            string[] _moderator = { "moderator", "passwordmoderator" };
+            string[] _user = { "user", "passworduser" };
 
-            
+
             for (int i = 0; i <= 3; i++) // count for attempt
             {
                 if (i == 3) // condition for attempts
@@ -24,26 +24,28 @@ namespace ConsoleAppUsersLogin
                     break;
                 }
 
-                Console.WriteLine("Please enter your login"); 
+                Console.WriteLine("Please enter your login");
 
                 string _strLogin = Convert.ToString(Console.ReadLine()); // read LOGIN
 
-                Console.WriteLine("Please enter your password"); 
+                Console.WriteLine("Please enter your password");
 
                 string _strPassword = Convert.ToString(Console.ReadLine()); // read PASSWORD
 
-                if (_strLogin == _iAdmin[0] && _strPassword == _iAdmin[1]) // admin checkin
+
+                if (_admin.Contains(_strLogin) && _admin.Contains(_strPassword)) // admin checkin
                 {
                     Console.WriteLine("Hello admin");
                     break;
                 }
-                if (_strLogin == _iModerator[0] && _strPassword == _iModerator[1]) // moderator checkin
+
+                if (_moderator.Contains(_strLogin) && _moderator.Contains(_strPassword)) // moderator checkin
                 {
                     Console.WriteLine("Hello moderator");
                     break;
                 }
 
-                if (_strLogin == _iUser[0] && _strPassword == _iUser[1]) // user checkin
+                if (_user.Contains(_strLogin) && _user.Contains(_strPassword)) // user checkin
                 {
                     Console.WriteLine("Hello user");
                     break;
@@ -51,9 +53,9 @@ namespace ConsoleAppUsersLogin
                 else if (i < 2) // condition for attemts before 3th attemt
                 {
                     Console.WriteLine("Please try again you login or password");
-                } 
+                }
             }
-            
+
             Console.ReadKey();
         }
     }
