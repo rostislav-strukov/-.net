@@ -26,6 +26,22 @@ namespace Entity_Start
                 myDB.TableProduct.Add(prod3);
                 myDB.TableProduct.Add(prod4);
                 myDB.TableProduct.Add(prod5);
+
+                myDB.SaveChanges();
+
+                Order ord1 = new Order { Customer = "Fill", Quantity = 4, Product = prod1 };
+                Order ord2 = new Order { Customer = "Mark", Quantity = 3, Product = prod2 };
+                Order ord3 = new Order { Customer = "Oleg", Quantity = 5, Product = prod3 };
+                Order ord4 = new Order { Customer = "Ivan", Quantity = 5, Product = prod4 };
+                Order ord5 = new Order { Customer = "Babin", Quantity = 6, Product = prod5 };
+
+                myDB.TableOrder.Add(ord1);
+                myDB.TableOrder.Add(ord2);
+                myDB.TableOrder.Add(ord3);
+                myDB.TableOrder.Add(ord5);
+                myDB.TableOrder.Add(ord5);
+
+                myDB.SaveChanges();
             }
         }
     }
