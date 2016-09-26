@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Entity_Start
 {
-    [Table("Order")]
-    public partial class Order
+    //[Table("Order")]
+    public class Order
     {
         public int Id { get; set; }
 
@@ -19,7 +19,7 @@ namespace Entity_Start
 
         public int? ProductId { get; set; }
 
-        public decimal TotalPrice { get; set; }
+        public decimal? TotalPrice { get; set; }
 
         public Product Product { get; set; }
     }

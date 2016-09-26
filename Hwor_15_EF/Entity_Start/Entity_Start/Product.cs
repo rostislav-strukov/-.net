@@ -6,10 +6,10 @@ namespace Entity_Start
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Product")]
-    public partial class Product
+    //[Table("Product")]
+    public class Product
     {
-        public int IdProduct { get; set; }
+        public int Id { get; set; }
 
         public string NameProd { get; set; }
 

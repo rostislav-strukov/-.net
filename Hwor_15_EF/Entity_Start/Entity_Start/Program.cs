@@ -11,15 +11,15 @@ namespace Entity_Start
     {
         static void Main(string[] args)
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<HubDB>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<Model>());
 
-            using (HubDB myDB = new HubDB())
+            using (Model myDB = new Model())
             {
-                Product prod1 = new Product { NameProd = "MicrosoftTablet", ProdPrice = 10000 };
-                Product prod2 = new Product { NameProd = "SumsungTablet", ProdPrice = 7000 };
-                Product prod3 = new Product { NameProd = "AppleTablet", ProdPrice = 9000 };
-                Product prod4 = new Product { NameProd = "AsusTablet", ProdPrice = 5000 };
-                Product prod5 = new Product { NameProd = "ChuviTablet", ProdPrice = 1500 };
+                Product prod1 = new Product { /*IdProduct = 1,*/ NameProd = "MicrosoftTablet", ProdPrice = 10000 };
+                Product prod2 = new Product { /*IdProduct = 2,*/ NameProd = "SumsungTablet", ProdPrice = 7000 };
+                Product prod3 = new Product { /*IdProduct = 3,*/ NameProd = "AppleTablet", ProdPrice = 9000 };
+                Product prod4 = new Product { /*IdProduct = 4,*/ NameProd = "AsusTablet", ProdPrice = 5000 };
+                Product prod5 = new Product { /*IdProduct = 5,*/ NameProd = "ChuviTablet", ProdPrice = 1500 };
 
                 myDB.TableProduct.Add(prod1);
                 myDB.TableProduct.Add(prod2);
@@ -28,6 +28,8 @@ namespace Entity_Start
                 myDB.TableProduct.Add(prod5);
 
                 myDB.SaveChanges();
+
+                Console.WriteLine("Check is product");
 
                 Order ord1 = new Order { Customer = "Fill", Quantity = 4, Product = prod1 };
                 Order ord2 = new Order { Customer = "Mark", Quantity = 3, Product = prod2 };
@@ -42,6 +44,10 @@ namespace Entity_Start
                 myDB.TableOrder.Add(ord5);
 
                 myDB.SaveChanges();
+
+                Console.WriteLine("Check is order");
+
+                Console.ReadKey();
             }
         }
     }
