@@ -47,6 +47,13 @@ namespace Entity_Start
 
                 Console.WriteLine("Check is order");
 
+                var query = from p in myDB.TableProduct
+                            select p.NameProd;
+
+                foreach (var item in query)
+                {
+                    Console.WriteLine(item);
+                }
                 Console.ReadKey();
             }
         }
