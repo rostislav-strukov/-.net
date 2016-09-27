@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace Entity_Start
 {
-    //[Table("Order")]
     public class Order
     {
         public int Id { get; set; }

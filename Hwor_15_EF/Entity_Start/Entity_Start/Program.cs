@@ -15,11 +15,11 @@ namespace Entity_Start
 
             using (Model myDB = new Model())
             {
-                Product prod1 = new Product { /*IdProduct = 1,*/ NameProd = "MicrosoftTablet", ProdPrice = 10000 };
-                Product prod2 = new Product { /*IdProduct = 2,*/ NameProd = "SumsungTablet", ProdPrice = 7000 };
-                Product prod3 = new Product { /*IdProduct = 3,*/ NameProd = "AppleTablet", ProdPrice = 9000 };
-                Product prod4 = new Product { /*IdProduct = 4,*/ NameProd = "AsusTablet", ProdPrice = 5000 };
-                Product prod5 = new Product { /*IdProduct = 5,*/ NameProd = "ChuviTablet", ProdPrice = 1500 };
+                Product prod1 = new Product { NameProd = "MicrosoftTablet", ProdPrice = 10000 };
+                Product prod2 = new Product { NameProd = "SumsungTablet", ProdPrice = 7000 };
+                Product prod3 = new Product { NameProd = "AppleTablet", ProdPrice = 9000 };
+                Product prod4 = new Product { NameProd = "AsusTablet", ProdPrice = 5000 };
+                Product prod5 = new Product { NameProd = "ChuviTablet", ProdPrice = 1500 };
 
                 myDB.TableProduct.Add(prod1);
                 myDB.TableProduct.Add(prod2);
@@ -29,7 +29,7 @@ namespace Entity_Start
 
                 myDB.SaveChanges();
 
-                Console.WriteLine("Check is product");
+                Console.WriteLine("Check is products");
 
                 Order ord1 = new Order { Customer = "Fill", Quantity = 4, Product = prod1 };
                 Order ord2 = new Order { Customer = "Mark", Quantity = 3, Product = prod2 };
@@ -45,7 +45,9 @@ namespace Entity_Start
 
                 myDB.SaveChanges();
 
-                Console.WriteLine("Check is order");
+                AddNewProduct();
+                myDB.SaveChanges();
+                Console.WriteLine("Check is orders");
 
                 var query = from p in myDB.TableProduct
                             select p.NameProd;
@@ -57,5 +59,33 @@ namespace Entity_Start
                 Console.ReadKey();
             }
         }
+        static public void AddNewProduct()
+        {
+            Model myDB = new Model();
+            Product product = new Product();
+
+            Console.Write("Please add NAME of PRODUCT:");
+            product.NameProd = Console.ReadLine();
+            Console.WriteLine();
+            Console.Write("Please add PRICE of PRODUCT");
+            product.ProdPrice = Convert.ToDecimal(Console.ReadLine());
+
+            myDB.TableProduct.Add(product);
+            myDB.SaveChanges();         
+        }
+        //static public void AddNewOrder()
+        //{
+        //    Model myDB = new Model();
+        //    Order order = new Order();
+
+        //    Console.Write("Please add NAME of PRODUCT:");
+        //    order.ProductId = Console.ReadLine();
+        //    Console.WriteLine();
+        //    Console.Write("Please add PRICE of PRODUCT");
+        //    product.ProdPrice = Convert.ToDecimal(Console.ReadLine());
+
+        //    myDB.TableProduct.Add(product);
+        //    myDB.SaveChanges();
+        //}
     }
 }
