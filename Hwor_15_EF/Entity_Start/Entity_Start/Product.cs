@@ -14,5 +14,7 @@ namespace Entity_Start
         public string NameProd { get; set; }
 
         public decimal ProdPrice { get; set; }
+
+        ICollection<Order> Order { get; set; }
     }
 }

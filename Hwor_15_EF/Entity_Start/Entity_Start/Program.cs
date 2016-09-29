@@ -11,10 +11,10 @@ namespace Entity_Start
     {
         static void Main(string[] args)
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<Model>());
+            Database.SetInitializer(new DropCreateDatabaseAlways<ModelDB>());
 
-            using (Model myDB = new Model())
-            {
+            ModelDB myDB = new ModelDB();
+            
                 Product prod1 = new Product { NameProd = "MicrosoftTablet", ProdPrice = 10000 };
                 Product prod2 = new Product { NameProd = "SumsungTablet", ProdPrice = 7000 };
                 Product prod3 = new Product { NameProd = "AppleTablet", ProdPrice = 9000 };
@@ -26,42 +26,62 @@ namespace Entity_Start
                 myDB.TableProduct.Add(prod3);
                 myDB.TableProduct.Add(prod4);
                 myDB.TableProduct.Add(prod5);
-
                 myDB.SaveChanges();
 
-                Console.WriteLine("Check is products");
+                ShowALLProducts();
+                ShowMenu();
 
-                Order ord1 = new Order { Customer = "Fill", Quantity = 4, Product = prod1 };
-                Order ord2 = new Order { Customer = "Mark", Quantity = 3, Product = prod2 };
-                Order ord3 = new Order { Customer = "Oleg", Quantity = 5, Product = prod3 };
-                Order ord4 = new Order { Customer = "Ivan", Quantity = 5, Product = prod4 };
-                Order ord5 = new Order { Customer = "Babin", Quantity = 6, Product = prod5 };
-
-                myDB.TableOrder.Add(ord1);
-                myDB.TableOrder.Add(ord2);
-                myDB.TableOrder.Add(ord3);
-                myDB.TableOrder.Add(ord5);
-                myDB.TableOrder.Add(ord5);
-
-                myDB.SaveChanges();
-
-                AddNewProduct();
-                myDB.SaveChanges();
-                Console.WriteLine("Check is orders");
-
-                var query = from p in myDB.TableProduct
-                            select p.NameProd;
-
-                foreach (var item in query)
-                {
-                    Console.WriteLine(item);
-                }
                 Console.ReadKey();
+            
+        }
+        static void ShowALLProducts()
+        {
+            ModelDB myDB = new ModelDB();
+
+            Console.WriteLine("List of product in DataBase -> Table[Product]:");
+            Console.WriteLine(new string('-', 70));
+
+            foreach (var item in myDB.TableProduct)
+            {
+                Console.WriteLine($"ProductId - {item.Id} NameProduct - {item.NameProd} PriceProduct - {item.ProdPrice}");
+            }
+
+            Console.WriteLine(new string('-', 70));
+        }
+        static void ShowMenu()
+        {
+            Console.WriteLine("PLease enter you choose:");
+            Console.WriteLine("1 - Add new Product");
+            Console.WriteLine("2 - Delete Product by ID");
+            Console.WriteLine("3 - Create new Order");
+            Console.WriteLine("4 - Correct product by ID");
+            Console.WriteLine("5 - Clear Table");
+            Console.WriteLine("6 - Update Table");
+            Console.WriteLine("7 - Get Element by ID");
+            Console.WriteLine("8 - Get information about product by Name Price and Sum Order");
+
+            int _triger = Convert.ToInt32(Console.ReadLine());
+
+            switch (_triger)
+            {
+                case 1:
+                    AddNewProduct();
+                    break;
+                case 2:
+                    RemoveProduct();
+                    break;
+                case 3:
+                    CreateNewOrder();
+                    break;
+                case 4:
+                    CorrectProduct();
+                    break;
+                    // default:
             }
         }
-        static public void AddNewProduct()
+        static void AddNewProduct()
         {
-            Model myDB = new Model();
+            ModelDB myDB = new ModelDB();
             Product product = new Product();
 
             Console.Write("Please add NAME of PRODUCT:");
@@ -71,21 +91,80 @@ namespace Entity_Start
             product.ProdPrice = Convert.ToDecimal(Console.ReadLine());
 
             myDB.TableProduct.Add(product);
-            myDB.SaveChanges();         
+            myDB.SaveChanges();
         }
-        //static public void AddNewOrder()
-        //{
-        //    Model myDB = new Model();
-        //    Order order = new Order();
+        static void RemoveProduct()
+        {
+            ModelDB myDB = new ModelDB();
 
-        //    Console.Write("Please add NAME of PRODUCT:");
-        //    order.ProductId = Console.ReadLine();
-        //    Console.WriteLine();
-        //    Console.Write("Please add PRICE of PRODUCT");
-        //    product.ProdPrice = Convert.ToDecimal(Console.ReadLine());
+            int id = 0;
 
-        //    myDB.TableProduct.Add(product);
-        //    myDB.SaveChanges();
-        //}
+            Console.Write("Please choose Product by ID and DELETE:");
+            id = Convert.ToInt32(Console.ReadLine());
+
+            Product product = myDB.TableProduct.Find(id);
+
+            myDB.TableProduct.Remove(product);
+            myDB.SaveChanges();
+        }
+        static void CreateNewOrder()
+        {
+
+            int id = 0;
+            int _quantity = 0;
+            string _customer = null;
+
+            ModelDB myDB = new ModelDB();
+
+            Console.WriteLine("Please enter name customer which ordering:"); 
+            _customer = Console.ReadLine();
+            Console.WriteLine("Please choose ID/number product in list:");
+            id = Convert.ToInt32(Console.ReadLine());
+            Product product = myDB.TableProduct.Find(id);
+            Console.WriteLine($"You choose product {product.Id}. {product.NameProd} -> Price: {product.ProdPrice}");
+            Console.WriteLine("Please enter value quantity the product:");
+            _quantity = Convert.ToInt32(Console.ReadLine());
+
+            Order order = new Order()
+            {
+                Customer = _customer,
+                ProductId = product.Id,
+                Quantity = _quantity,
+                Product = product
+            };
+
+            myDB.TableOrder.Add(order);
+            myDB.SaveChanges();
+
+            var orders = myDB.TableOrder.ToList();
+
+            foreach (var item in orders)
+            {
+                Console.WriteLine("Congratulate you are purchased info");
+                Console.WriteLine("-----------------------------------");
+                Console.WriteLine($"Name customer: {item.Customer}");
+                Console.WriteLine($"OrderID: {item.Id} - ProductID: {item.ProductId} - Name Product: {item.Product.NameProd} - Quantity: {item.Quantity} - Total Price: {item.TotalPrice}");
+            }
+        }
+        static void CorrectProduct()
+        {
+            ModelDB myDB = new ModelDB();
+            Product product = new Product();
+
+            Console.WriteLine("Please enter name Product wich get info: ");
+            product.NameProd = Console.ReadLine();
+            Console.WriteLine("Please enter max Price wich get info about Product:");
+            product.ProdPrice = Convert.ToDecimal(Console.ReadLine());
+
+            var products = from item in myDB.TableProduct
+                           where item.NameProd.Contains(product.NameProd)
+                           where item.ProdPrice < product.ProdPrice
+                           select item;
+
+            foreach (var item in products)
+            {
+                Console.WriteLine($"{item.Id}. {item.NameProd} - {item.ProdPrice}");
+            }
+        }
     }
 }
