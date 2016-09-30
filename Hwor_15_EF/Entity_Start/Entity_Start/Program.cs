@@ -14,25 +14,26 @@ namespace Entity_Start
             Database.SetInitializer(new DropCreateDatabaseAlways<ModelDB>());
 
             ModelDB myDB = new ModelDB();
+
+            Product prod1 = new Product { NameProd = "MicrosoftTablet", ProdPrice = 10000 };
+            Product prod2 = new Product { NameProd = "SumsungTablet", ProdPrice = 7000 };
+            Product prod3 = new Product { NameProd = "AppleTablet", ProdPrice = 9000 };
+            Product prod4 = new Product { NameProd = "AsusTablet", ProdPrice = 5000 };
+            Product prod5 = new Product { NameProd = "ChuviTablet", ProdPrice = 1500 };
+
+            myDB.TableProduct.Add(prod1);
+            myDB.TableProduct.Add(prod2);
+            myDB.TableProduct.Add(prod3);
+            myDB.TableProduct.Add(prod4);
+            myDB.TableProduct.Add(prod5);
+            myDB.SaveChanges();
+
+            ShowALLProducts();
+            ShowMenu();
             
-                Product prod1 = new Product { NameProd = "MicrosoftTablet", ProdPrice = 10000 };
-                Product prod2 = new Product { NameProd = "SumsungTablet", ProdPrice = 7000 };
-                Product prod3 = new Product { NameProd = "AppleTablet", ProdPrice = 9000 };
-                Product prod4 = new Product { NameProd = "AsusTablet", ProdPrice = 5000 };
-                Product prod5 = new Product { NameProd = "ChuviTablet", ProdPrice = 1500 };
 
-                myDB.TableProduct.Add(prod1);
-                myDB.TableProduct.Add(prod2);
-                myDB.TableProduct.Add(prod3);
-                myDB.TableProduct.Add(prod4);
-                myDB.TableProduct.Add(prod5);
-                myDB.SaveChanges();
+            Console.ReadKey();
 
-                ShowALLProducts();
-                ShowMenu();
-
-                Console.ReadKey();
-            
         }
         static void ShowALLProducts()
         {
@@ -57,8 +58,7 @@ namespace Entity_Start
             Console.WriteLine("4 - Correct product by ID");
             Console.WriteLine("5 - Clear Table");
             Console.WriteLine("6 - Update Table");
-            Console.WriteLine("7 - Get Element by ID");
-            Console.WriteLine("8 - Get information about product by Name Price and Sum Order");
+            Console.WriteLine("7 - Search element by ID");
 
             int _triger = Convert.ToInt32(Console.ReadLine());
 
@@ -74,9 +74,17 @@ namespace Entity_Start
                     CreateNewOrder();
                     break;
                 case 4:
-                    CorrectProduct();
+                    SearchProduct(); 
+                    break;               
+                case 5:
                     break;
-                    // default:
+                case 6:
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                //default:
             }
         }
         static void AddNewProduct()
@@ -116,7 +124,7 @@ namespace Entity_Start
 
             ModelDB myDB = new ModelDB();
 
-            Console.WriteLine("Please enter name customer which ordering:"); 
+            Console.WriteLine("Please enter name customer which ordering:");
             _customer = Console.ReadLine();
             Console.WriteLine("Please choose ID/number product in list:");
             id = Convert.ToInt32(Console.ReadLine());
@@ -146,7 +154,7 @@ namespace Entity_Start
                 Console.WriteLine($"OrderID: {item.Id} - ProductID: {item.ProductId} - Name Product: {item.Product.NameProd} - Quantity: {item.Quantity} - Total Price: {item.TotalPrice}");
             }
         }
-        static void CorrectProduct()
+        static void SearchProduct()
         {
             ModelDB myDB = new ModelDB();
             Product product = new Product();
@@ -166,5 +174,27 @@ namespace Entity_Start
                 Console.WriteLine($"{item.Id}. {item.NameProd} - {item.ProdPrice}");
             }
         }
+        static void CorrectProduct()
+        {
+            int id = 0;
+            string _name = null;
+            decimal _price = 0;
+
+            ModelDB myDB = new ModelDB();
+
+            Console.WriteLine("Please enter ProductID which you want correct:");
+            id = Convert.ToInt32(Console.ReadLine());
+            Product product = myDB.TableProduct.Find(id);
+
+            Console.WriteLine("Please correct NameProduct");
+            _name = Console.ReadLine();
+            product.NameProd = _name;
+            Console.WriteLine("Please correct ProdPrice");
+            _price = Convert.ToDecimal(Console.ReadLine());
+            product.ProdPrice = _price;
+            myDB.Entry(product).State = EntityState.Modified;
+            myDB.SaveChanges();
+        }
+        
     }
 }
