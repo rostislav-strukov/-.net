@@ -56,9 +56,9 @@ namespace Entity_Start
             Console.WriteLine("2 - Delete Product by ID");
             Console.WriteLine("3 - Create new Order");
             Console.WriteLine("4 - Correct product by ID");
-            Console.WriteLine("5 - Clear Table");
-            Console.WriteLine("6 - Update Table");
-            Console.WriteLine("7 - Search element by ID");
+            Console.WriteLine("5 - Search product by ID");
+            Console.WriteLine("6 - Clear Table");
+            Console.WriteLine("7 - Update Table");         
 
             int _triger = Convert.ToInt32(Console.ReadLine());
 
@@ -77,8 +77,10 @@ namespace Entity_Start
                     SearchProduct(); 
                     break;               
                 case 5:
+                    CorrectProduct();
                     break;
                 case 6:
+                    SearchElemId();
                     break;
                 case 7:
                     break;
@@ -193,6 +195,18 @@ namespace Entity_Start
             _price = Convert.ToDecimal(Console.ReadLine());
             product.ProdPrice = _price;
             myDB.Entry(product).State = EntityState.Modified;
+            myDB.SaveChanges();
+        }
+        static void SearchElemId()
+        {
+            int id = 0;
+
+            ModelDB myDB = new ModelDB();
+
+            Console.WriteLine("Please enter ProductID which you want correct:");
+            id = Convert.ToInt32(Console.ReadLine());
+            Product product = myDB.TableProduct.Find(id);
+            Console.WriteLine($"{product.Id}. {product.NameProd} - {product.ProdPrice}");
             myDB.SaveChanges();
         }
         
