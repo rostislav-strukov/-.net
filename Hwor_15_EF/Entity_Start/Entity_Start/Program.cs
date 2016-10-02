@@ -55,10 +55,11 @@ namespace Entity_Start
             Console.WriteLine("1 - Add new Product");
             Console.WriteLine("2 - Delete Product by ID");
             Console.WriteLine("3 - Create new Order");
-            Console.WriteLine("4 - Correct product by ID");
-            Console.WriteLine("5 - Search product by ID");
-            Console.WriteLine("6 - Clear Table");
-            Console.WriteLine("7 - Update Table");         
+            Console.WriteLine("4 - Search Product by name and price");
+            Console.WriteLine("5 - Correct product by ProductID");
+            Console.WriteLine("Search element by ProductID");
+            Console.WriteLine(new string('-', 20));
+            Console.WriteLine("0 - EXIT");         
 
             int _triger = Convert.ToInt32(Console.ReadLine());
 
@@ -82,11 +83,10 @@ namespace Entity_Start
                 case 6:
                     SearchElemId();
                     break;
-                case 7:
+                case 0:
+                    Environment.Exit(0);
                     break;
-                case 8:
-                    break;
-                //default:
+                    //default:
             }
         }
         static void AddNewProduct()
@@ -209,6 +209,5 @@ namespace Entity_Start
             Console.WriteLine($"{product.Id}. {product.NameProd} - {product.ProdPrice}");
             myDB.SaveChanges();
         }
-        
     }
 }
