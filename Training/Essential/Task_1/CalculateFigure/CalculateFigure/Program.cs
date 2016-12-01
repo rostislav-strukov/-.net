@@ -10,22 +10,12 @@ namespace CalculateFigure
     {
         static void Main(string[] args)
         {
-            Figure figure = new Figure();
-            Point pn = new Point();
+            Point A = new Point(-2, 4, "side1");
+            Figure figire = new Figure(A);
 
-            pn.Side1 = 15;
-            pn.Side2 = 10;
-
-            Point pb = new Point();
-
-            pb.Side1 = 8;
-            pb.Side1 = 10;
-
-            figure.PerimetrCalculator();
-            figure.LengthSide(pn, pb);
+            //figure.PerimetrCalculator();
 
             Console.ReadKey();
-
         }
     }
 }
