@@ -13,23 +13,24 @@ namespace CalculateFigure
 
         Point A;
         Point B;
-        public Figure(Point A, Point B, Point C, Point D, Point E)
-        {
-            A = new Point(-2, 4, "side1");
-            B = new Point(5, 4, "side2");
-            C = new Point(9, 2, "side3");
-            D = new Point(9, -2, "side4");
-            E = new Point(-3, -4, "side5");
-        }
+        //public Figure(Point A, Point B, Point C, Point D, Point E)
+        //{
+        //    A = new Point(-2, 4, "side1");
+        //    B = new Point(5, 4, "side2");
+        //    C = new Point(9, 2, "side3");
+        //    D = new Point(9, -2, "side4");
+        //    E = new Point(-3, -4, "side5");
+        //}
 
         public Figure()
         {
             //A = new Point();
         }
 
-        public Figure(Point A)
+        public Figure(Point a, Point b)
         {
-            A = A;
+            A = a;
+            B = b;
         }
 
         //public double LengthSide(Point A, Point B)

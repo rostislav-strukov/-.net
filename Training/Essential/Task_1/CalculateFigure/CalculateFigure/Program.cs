@@ -11,9 +11,10 @@ namespace CalculateFigure
         static void Main(string[] args)
         {
             Point A = new Point(-2, 4, "side1");
-            Figure figire = new Figure(A);
+            Point B = new Point(5, 4, "side2");
+            Figure figure = new Figure(A, B);
 
-            //figure.PerimetrCalculator();
+            figure.PerimetrCalculator();
 
             Console.ReadKey();
         }
