@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 14 for Windows Desktop
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Value_matrix", "Value_matrix\Value_matrix.csproj", "{A47D73CF-C914-417A-B4F5-678E522EAEE4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A47D73CF-C914-417A-B4F5-678E522EAEE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A47D73CF-C914-417A-B4F5-678E522EAEE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A47D73CF-C914-417A-B4F5-678E522EAEE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A47D73CF-C914-417A-B4F5-678E522EAEE4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

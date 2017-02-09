@@ -19,7 +19,7 @@ namespace ConsoleApplication1
 
 
             string a = "\aмоя строка 1";
-            string b = "\aмоя строка 2";
+            string b = "\nмоя строка 2";
             string i = "\aмоя строка 3";
 
             Console.WriteLine(a);
