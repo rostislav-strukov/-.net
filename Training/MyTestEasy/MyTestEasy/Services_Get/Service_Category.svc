@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="MyTestEasy.Services_Get.Service_Category" CodeBehind="Service_Category.svc.cs" %>

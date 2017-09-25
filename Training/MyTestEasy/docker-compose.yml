@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  mytesteasy:
+    image: mytesteasy
+    build:
+      context: .\MyTestEasy
+      dockerfile: Dockerfile
